@@ -1,6 +1,6 @@
 import copy
 import sys
-from math import log2, ceil
+from math import ceil, log2
 
 
 class Sorting:
@@ -45,8 +45,8 @@ class Sorting:
         length = len(arr)
         if length == 1:
             return arr
-        left = self._merge_sort_recursive(arr[:length//2])
-        right = self._merge_sort_recursive(arr[length//2:])
+        left = self._merge_sort_recursive(arr[: length // 2])
+        right = self._merge_sort_recursive(arr[length // 2 :])
         result = []
         i, j = 0, 0
         while i < len(left) and j < len(right):

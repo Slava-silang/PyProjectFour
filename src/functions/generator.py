@@ -1,5 +1,5 @@
-from typing import Any
 import random
+from typing import Any
 
 
 class Generator:
@@ -16,7 +16,9 @@ class Generator:
         generator = random.Random(self._seed)
         return [generator.randint(start, end) for _ in range(size)]
 
-    def random_sorted_list(self, size: int, *, start: int = 0, end: int = 1000) -> list[int]:
+    def random_sorted_list(
+        self, size: int, *, start: int = 0, end: int = 1000
+    ) -> list[int]:
         if type(size) is not int:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
@@ -28,7 +30,9 @@ class Generator:
         arr.sort()
         return arr
 
-    def random_reversed_list(self, size: int, *, start: int = 0, end: int = 1000) -> list[int]:
+    def random_reversed_list(
+        self, size: int, *, start: int = 0, end: int = 1000
+    ) -> list[int]:
         if type(size) is not int:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
@@ -40,7 +44,9 @@ class Generator:
         arr.sort(reverse=True)
         return arr
 
-    def random_almost_sorted_list(self, size: int, *, start: int = 0, end: int = 1000) -> list[int]:
+    def random_almost_sorted_list(
+        self, size: int, *, start: int = 0, end: int = 1000
+    ) -> list[int]:
         if type(size) is not int:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
@@ -50,14 +56,16 @@ class Generator:
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
         arr.sort()
-        for i in range(generator.randint(size//8, size//2)):
+        for i in range(generator.randint(size // 8, size // 2)):
             i = generator.randint(0, size - 1)
             j = generator.randint(0, size - 1)
             arr[i], arr[j] = arr[j], arr[i]
 
         return arr
 
-    def random_duplicated_list(self, size: int, *, start: int = 0, end: int = 1000) -> list[int]:
+    def random_duplicated_list(
+        self, size: int, *, start: int = 0, end: int = 1000
+    ) -> list[int]:
         if type(size) is not int:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
@@ -66,8 +74,8 @@ class Generator:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
-        for i in range(generator.randint(size//2, size*3//4)):
+        for i in range(generator.randint(size // 2, size * 3 // 4)):
             i = generator.randint(0, size - 1)
             key = generator.randint(0, size - 1)
-            arr[(key+i)%size] = arr[i]
+            arr[(key + i) % size] = arr[i]
         return arr
