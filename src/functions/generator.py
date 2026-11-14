@@ -56,7 +56,7 @@ class Generator:
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
         arr.sort()
-        for i in range(generator.randint(size // 8, size // 2)):
+        for i in range(generator.randint(size // 16, size // 8)):
             i = generator.randint(0, size - 1)
             j = generator.randint(0, size - 1)
             arr[i], arr[j] = arr[j], arr[i]

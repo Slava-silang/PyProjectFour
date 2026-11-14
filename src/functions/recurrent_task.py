@@ -26,6 +26,8 @@ def fast_power_recursive(
         raise TypeError("Invalid data")
     if power < 0:
         return 1 / fast_power_recursive(value, -power)
+    if power == 0:
+        return 1
     if _check:
         if power == 0:
             return 1
@@ -35,6 +37,6 @@ def fast_power_recursive(
     half = fast_power_recursive(value, power // 2, _check=False)
 
     if power % 2 == 1:
-        return half * half
-    else:
         return half * half * value
+    else:
+        return half * half
