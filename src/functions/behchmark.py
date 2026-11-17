@@ -1,3 +1,4 @@
+from math import log2
 from pathlib import Path
 from statistics import mean
 from time import perf_counter
@@ -90,6 +91,60 @@ def write_benchmark(
                 file.write(
                     f"|{item['algorithm']} | {item['dataset']} | {item['size']} | {item['time']} | {item['status']}|"
                     + "\n"
+                )
+    except OSError:
+        raise OSError("Cannot write to file")
+
+
+def analyze_complexity(benchmark: list[dict]) -> list[dict]:
+    complexities = {
+        "bubble": lambda n: n**2,
+        "merge": lambda n: n * log2(n),
+    }
+
+    groups = {}
+    for row in benchmark:
+        if row["status"] != "OK":
+            continue
+
+        group = (row["algorithm"], row["dataset"])
+        groups.setdefault(group, []).append(row)
+
+    analysis = []
+
+    for (algorithm, dataset), rows in groups.items():
+        rows = sorted(rows, key=lambda row: row["size"])
+        complexity = complexities[algorithm]
+
+        for previous, current in zip(rows, rows[1:]):
+            if previous["time"] <= 0 or current["time"] <= 0:
+                continue
+
+            analysis.append(
+                {
+                    "algorithm": algorithm,
+                    "dataset": dataset,
+                    "sizes": f"{previous['size']} -> {current['size']}",
+                    "actual_ratio": current["time"] / previous["time"],
+                    "expected_ratio": (
+                        complexity(current["size"]) / complexity(previous["size"])
+                    ),
+                }
+            )
+
+    return analysis
+
+
+def write_analysis(analysis: list[dict], path: Path | str) -> None:
+    try:
+        path = Path(path)
+        with path.open(mode="a", encoding="utf-8") as file:
+            file.write("\n")
+            file.write("|Algorithm|Dataset|Sizes|Actual ratio|Expected ratio|\n")
+            file.write("|---|---|---|---|---|\n")
+            for row in analysis:
+                file.write(
+                    f"|{row['algorithm']}|{row['dataset']}|{row['sizes']}|{row['actual_ratio']}|{row['expected_ratio']}|\n"
                 )
     except OSError:
         raise OSError("Cannot write to file")

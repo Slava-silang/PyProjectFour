@@ -1,0 +1,32 @@
+|Algorithm name | Dataset | Size | Time in second | Status|
+|---|---|---|---|---|
+|bubble | random | 100 | 0.0006941284000276937 | OK|
+|merge | random | 100 | 0.00022907579987077042 | OK|
+|bubble | sorted | 100 | 0.0003241958002035972 | OK|
+|merge | sorted | 100 | 0.00014348759978020099 | OK|
+|bubble | reversed | 100 | 0.0008302191999973729 | OK|
+|merge | reversed | 100 | 0.00012126239998906385 | OK|
+|bubble | almost_sorted | 100 | 0.0002760515999398194 | OK|
+|merge | almost_sorted | 100 | 0.00013099819989292882 | OK|
+|bubble | duplicates | 100 | 0.0005715407996831345 | OK|
+|merge | duplicates | 100 | 0.00015205220006464515 | OK|
+|bubble | random | 1000 | 0.07089004520003073 | OK|
+|merge | random | 1000 | 0.0023266504002094736 | OK|
+|bubble | sorted | 1000 | 0.026883852999890222 | OK|
+|merge | sorted | 1000 | 0.0013685303998499875 | OK|
+|bubble | reversed | 1000 | 0.0965331782001158 | OK|
+|merge | reversed | 1000 | 0.0014517142000840977 | OK|
+|bubble | almost_sorted | 1000 | 0.038746695799818556 | OK|
+|merge | almost_sorted | 1000 | 0.0018026515997917158 | OK|
+|bubble | duplicates | 1000 | 0.07004246920059813 | OK|
+|merge | duplicates | 1000 | 0.002004820599722734 | OK|
+|bubble | random | 10000 | 7.75360240980026 | OK|
+|merge | random | 10000 | 0.0275974264000979 | OK|
+|bubble | sorted | 10000 | 3.2694552149998346 | OK|
+|merge | sorted | 10000 | 0.01867753940005059 | OK|
+|bubble | reversed | 10000 | 10.906338092800251 | OK|
+|merge | reversed | 10000 | 0.01892238020009245 | OK|
+|bubble | almost_sorted | 10000 | 3.9394376635998922 | OK|
+|merge | almost_sorted | 10000 | 0.024432723199970495 | OK|
+|bubble | duplicates | 10000 | 7.380804782199993 | OK|
+|merge | duplicates | 10000 | 0.012281389199779369 | OK|

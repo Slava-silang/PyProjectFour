@@ -11,7 +11,7 @@ class Generator:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
             raise TypeError("Start or end must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         return [generator.randint(start, end) for _ in range(size)]
@@ -23,7 +23,7 @@ class Generator:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
             raise TypeError("Start or end must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
@@ -37,7 +37,7 @@ class Generator:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
             raise TypeError("Start or end must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
@@ -51,7 +51,7 @@ class Generator:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
             raise TypeError("Start or end must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]
@@ -70,7 +70,7 @@ class Generator:
             raise TypeError("Size must be an integer")
         if type(start) is not int or type(end) is not int:
             raise TypeError("Start or end must be an integer")
-        if size <= 0:
+        if size < 0:
             raise ValueError("Size must be positive")
         generator = random.Random(self._seed)
         arr = [generator.randint(start, end) for _ in range(size)]

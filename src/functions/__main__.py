@@ -1,6 +1,12 @@
 import argparse
 
-from .behchmark import make_benchmark, print_benchmark, write_benchmark
+from .behchmark import (
+    analyze_complexity,
+    make_benchmark,
+    print_benchmark,
+    write_analysis,
+    write_benchmark,
+)
 
 
 def main() -> int:
@@ -18,6 +24,8 @@ def main() -> int:
         benchmark = make_benchmark()
         print_benchmark(benchmark)
         write_benchmark(path=args.output, benchmark=benchmark)
+        analysis = analyze_complexity(benchmark)
+        write_analysis(path=args.output, analysis=analysis)
         print(f"results of benchmark in {args.output}")
     return 0
 
