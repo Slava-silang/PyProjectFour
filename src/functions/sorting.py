@@ -8,11 +8,15 @@ class Sorting:
     def bubble_sort(
         self, arr: list, *, key: Callable[[Any], Any] | None = None
     ) -> list:
+        """Sorts the given array using bubble sort.
+        Input: list of elements to be sorted,
+               key function to be used for sorting
+        Output: list of sorted elements"""
         if not isinstance(arr, list):
             raise TypeError("Invalid input type")
-        new_arr = arr.copy()
-        keys = [key(item) if key is not None else item for item in new_arr]
-        try:
+        new_arr = arr.copy() # avoid changing original list
+        keys = [key(item) if key is not None else item for item in new_arr] # make list of keys
+        try: # sorting
             for i in range(len(new_arr)):
                 for j in range(len(new_arr) - i - 1):
                     if keys[j] > keys[j + 1]:
@@ -22,7 +26,7 @@ class Sorting:
                         )
                         keys[j], keys[j + 1] = keys[j + 1], keys[j]
             return new_arr
-        except TypeError as error:
+        except TypeError as error: # in case of unsupported comparison
             raise TypeError("Invalid input type") from error
 
     def _merge_sort_iteration(self, arr: list) -> list:
@@ -70,18 +74,22 @@ class Sorting:
         return result
 
     def merge_sort(self, arr: list, *, key: Callable[[Any], Any] | None = None) -> list:
+        """Entry point of merge sorting algorithm
+        Input: list of elements to be sorted,
+               key function to be used for sorting
+        Output: list of sorted elements"""
         if not isinstance(arr, list):
             raise TypeError("Invalid input type")
         if len(arr) <= 1:
             return arr
         try:
-            new_arr = arr.copy()
-            items = [(item, key(item) if key is not None else item) for item in new_arr]
-            if ceil(log2(len(arr))) + 1 >= sys.getrecursionlimit():
-                sorted_items = self._merge_sort_iteration(items)
+            new_arr = arr.copy() # avoid changing original list
+            items = [(item, key(item) if key is not None else item) for item in new_arr] # make list of keys
+            if ceil(log2(len(arr))) + 1 >= sys.getrecursionlimit(): # check max recursion depth
+                sorted_items = self._merge_sort_iteration(items) # use recursion method if it is possible
                 return [item for item, _ in sorted_items]
             else:
-                sorted_items = self._merge_sort_recursive(items)
+                sorted_items = self._merge_sort_recursive(items) # use iterative method else
                 return [item for item, _ in sorted_items]
         except TypeError as error:
             raise TypeError("Invalid input type") from error

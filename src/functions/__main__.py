@@ -10,6 +10,9 @@ from .behchmark import (
 
 
 def main() -> int:
+    """Entry point of the program
+    On this moment only makes benchmark and
+    analysis of complexity results."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command",
@@ -18,7 +21,7 @@ def main() -> int:
         default="benchmark",
         help="Command to print benchmark results in console",
     )
-    parser.add_argument("--output", type=str, default="benchmark.md")
+    parser.add_argument("--output", type=str, default="benchmark.md") # output for data
     args = parser.parse_args()
     if args.command == "benchmark":
         benchmark = make_benchmark()

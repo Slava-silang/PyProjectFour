@@ -9,6 +9,8 @@ from .sorting import Sorting
 
 
 def make_benchmark(*, seed: Any = "Stanislav", repeats: int = 5) -> list[dict]:
+    """Makes benchmark of merge sort and bubble sort algorithms
+    by any types of list and counts of elements"""
     benchmark = []
     generator = Generator(seed=seed)
     sorting = Sorting()
@@ -31,7 +33,7 @@ def make_benchmark(*, seed: Any = "Stanislav", repeats: int = 5) -> list[dict]:
             expected = sorted(original)
             for algorithm, sort in algorithms.items():
                 durations = []
-                status = "OK"
+                status = "OK" # check whether sorting is done right
                 for _ in range(repeats):
                     data = original.copy()
                     start = perf_counter()
@@ -62,6 +64,8 @@ def make_benchmark(*, seed: Any = "Stanislav", repeats: int = 5) -> list[dict]:
 def print_benchmark(
     benchmark: list[dict] | None = None, *, seed: Any = "Stanislav", repeats: int = 5
 ) -> None:
+    """Print benchmark of merge sort and bubble sort algorithms to console
+    If there is no benchmark makes it"""
     if benchmark is None:
         benchmark = make_benchmark(seed=seed, repeats=repeats)
     print("Algorithm name | Dataset       | Size       | Time in second | Status")
@@ -78,6 +82,9 @@ def write_benchmark(
     seed: Any = "Stanislav",
     repeats: int = 5,
 ):
+    """Write benchmark of merge sort and bubble sort algorithms to file
+    If there is no benchmark makes it
+    Path by default: benchmark.md"""
     if benchmark is None:
         benchmark = make_benchmark(seed=seed, repeats=repeats)
     try:
@@ -97,6 +104,8 @@ def write_benchmark(
 
 
 def analyze_complexity(benchmark: list[dict]) -> list[dict]:
+    """Makes analysis of complexity sorting algorithms
+    Does not make benchmark if there is no it"""
     complexities = {
         "bubble": lambda n: n**2,
         "merge": lambda n: n * log2(n),
@@ -135,7 +144,10 @@ def analyze_complexity(benchmark: list[dict]) -> list[dict]:
     return analysis
 
 
-def write_analysis(analysis: list[dict], path: Path | str) -> None:
+def write_analysis(analysis: list[dict], path: Path | str = "benchmark.md") -> None:
+    """Print analysis of merge sort and bubble sort algorithms to file
+    Does not make analysis if there is no it
+    Path by default: benchmark.md"""
     try:
         path = Path(path)
         with path.open(mode="a", encoding="utf-8") as file:
